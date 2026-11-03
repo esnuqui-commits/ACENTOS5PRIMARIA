@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>¡Domina la tilde!</title>
+<style>
+:root{--ink:#1b2a4a;--pap:#fdf8ec;--ag:#e8505b;--ll:#12a0a0;--es:#7a5af8;--hi:#ffe45e}
+*{box-sizing:border-box}
+body{margin:0;font:18px/1.45 "Trebuchet MS","Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--pap) repeating-linear-gradient(transparent 0 35px,#cfe3f3 35px 36px);min-height:100vh}
+header{display:flex;align-items:center;gap:12px;padding:8px 16px;background:var(--ink);color:#fff;position:sticky;top:0;z-index:5}
+header b{font-size:1.25rem;flex:1}
+.pill{background:var(--hi);color:var(--ink);border-radius:99px;padding:4px 14px;font-weight:700}
+main{max-width:980px;margin:auto;padding:16px}
+button{font:inherit;cursor:pointer;border:0;border-radius:14px;padding:12px 18px;background:var(--ink);color:#fff;min-height:50px}
+button:focus-visible,input:focus-visible{outline:4px solid var(--hi);outline-offset:2px}
+h1{font-size:clamp(2.1rem,7vw,3.6rem);margin:.1em 0}h2{margin:.3em 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.c,.m,.z{background:#fff;border:3px solid var(--ink);border-radius:18px;padding:16px;box-shadow:5px 5px 0 var(--ink);margin-bottom:12px}
+.m{text-align:left;color:var(--ink);margin:0;border-color:var(--c,var(--ink));box-shadow:5px 5px 0 var(--c,var(--ink))}
+.m:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--c)}
+.m span{font-size:2.2rem;display:block}.m small{display:block;opacity:.75}
+.sy{display:inline-block;padding:2px 12px;border-radius:10px;border:2px solid var(--ink);background:#fff;margin:2px;font-weight:700}
+.sy.t{background:var(--hi)}
+.hero .sy{font-size:clamp(1.6rem,6vw,2.6rem)}
+.w{font-size:clamp(2.4rem,9vw,4.6rem);font-weight:800;text-align:center;letter-spacing:.04em;margin:8px 0 14px}
+.o{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.o button,.k{background:#fff;color:var(--ink);border:3px solid var(--ink);font-size:1.3rem;font-weight:700}
+.o button.ok{background:#b8f0c8}.o button.bad{background:#ffd0d0}
+.k{padding:6px 16px;margin:0 4px 10px 0}
+input{font:inherit;font-size:1.8rem;width:100%;padding:10px;border:3px solid var(--ink);border-radius:12px;margin-bottom:12px;text-align:center}
+.bar{height:16px;border:3px solid var(--ink);border-radius:99px;background:#fff;overflow:hidden}.bar i{display:block;height:100%;background:var(--ll);transition:width .4s}
+.inf{margin:6px 0 12px;font-weight:700}
+.fb{border-radius:16px;padding:14px;border:3px solid var(--ink);margin-top:12px}.fb.g{background:#d9f7e3}.fb.b{background:#fff0cf}
+.z{min-height:150px;border-style:dashed;border-color:var(--c);box-shadow:none}
+.chip{display:inline-block;margin:4px;padding:8px 14px;border-radius:12px;background:var(--hi);border:2px solid var(--ink);cursor:grab;font-weight:700;font-size:1.2rem;user-select:none}
+.chip.sel{outline:4px solid var(--ink)}.chip.ok{background:#b8f0c8}.chip.bad{background:#ffc9c9}
+table{border-collapse:collapse;width:100%;background:#fff}td,th{border:2px solid var(--ink);padding:8px;text-align:left}
+.row{display:flex;align-items:center;gap:10px;margin:6px 0}.row i{display:block;height:18px;background:var(--ll);border-radius:9px;min-width:3px}
+.ev{display:flex;align-items:flex-end;gap:6px;height:120px}.ev i{flex:1;background:var(--es);border-radius:6px 6px 0 0;min-height:4px}
+.bd{display:inline-block;text-align:center;width:110px;margin:6px;font-size:.85rem}.bd span{font-size:2.4rem;display:block}.bd.l{filter:grayscale(1);opacity:.35}
+.tt{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 20px;border-radius:99px;z-index:9;font-weight:700}
+.cf{position:fixed;top:-30px;font-size:26px;animation:f 2.8s linear forwards;z-index:9;pointer-events:none}
+@keyframes f{to{transform:translateY(105vh) rotate(720deg)}}
+@media(prefers-reduced-motion:reduce){.cf{display:none}*{transition:none!important}}
+</style></head><body>
+<header><button onclick="home()" aria-label="Inicio">🏠</button><b>¡Domina la tilde!</b><span class="pill" id="pp"></span></header>
+<main id="app"></main>
+<script>
+const G=`ca-*mión can-*ción co-ra-*zón bal-*cón ja-*món a-*llí so-*fá ca-*fé ma-*má pa-*pá bo-*tón lec-*ción es-ta-*ción pan-ta-*lón ra-*tón a-*diós ja-*bón au-to-*bús a-de-*más in-*glés fran-*cés des-*pués a-*sí sa-*lón ca-ma-le-*ón me-lo-co-*tón a-*quí si-*llón a-*vión to-bo-*gán cam-pe-*ón li-*món col-*chón ra-*zón per-*dón le-*ón tam-*bién a-*nís in-te-*rés be-*bé co-li-*brí es-*tás
+re-*loj ac-*tor ha-bi-li-*dad ciu-*dad pa-*red ca-pi-*tal a-ni-*mal tam-*bor ju-*gar co-*mer can-*tar sal-*tar es-cri-*bir mi-*rar ver-*dad a-*mor co-*lor doc-*tor ca-*lor o-*lor sa-*bor ca-*nal pa-*pel mo-*tor ra-*dar na-*riz fe-*liz lu-*gar vi-*vir pro-fe-*sor pin-*tor a-ca-*bar ha-*cer vo-*lar na-*dar co-rre-*dor ju-ga-*dor ho-*tel mu-*jer a-*zul bai-*lar dor-*mir co-*rrer trac-*tor pas-*tel man-*tel cre-*er pu-*ñal
+*ár-bol *lá-piz *fá-cil di-*fí-cil a-*zú-car ca-*rác-ter *fút-bol *ál-bum *cés-ped *án-gel *dó-lar *tú-nel *ú-til *mó-vil *fér-til *dó-cil *há-bil *más-til *cár-cel *cóc-tel *á-gil *dé-bil *frá-gil *már-mol *crá-ter *lí-der *hués-ped ca-*dá-ver *lá-ser *tré-bol *fó-sil
+*ca-sa *me-sa *li-bro *pe-rro *ga-to e-*xa-men *jo-ven o-*ri-gen i-*ma-gen *can-tan *co-men *lu-nes *mar-tes *vier-nes do-*min-go a-*mi-go es-*cue-la co-*le-gio ven-*ta-na ca-*mi-no ma-ri-*po-sa pe-*lo-ta za-*pa-to cua-*der-no mo-*chi-la pi-*za-rra ti-*je-ras *flo-res pa-*re-des ra-*to-nes ca-*mio-nes can-*cio-nes hor-*mi-ga ji-*ra-fa e-le-*fan-te tor-*tu-ga co-*ne-jo ca-*ba-llo ba-*lle-na le-o-*par-do ser-*pien-te na-*ran-ja man-*za-na *pe-ra *o-jo *bo-ca o-*re-ja *ca-ra *len-gua *dien-te ca-*be-za *bra-zo *pier-na *de-do *ma-no *cuer-po po-*e-ta te-*a-tro mu-*se-o ma-*es-tro i-*de-a pa-*lo-ma
+mur-*cié-la-go *pá-ja-ro *mú-si-ca te-*lé-fo-no *plá-ta-no *sá-ba-do *miér-co-les *mé-di-co *cá-ma-ra *lám-pa-ra *má-qui-na *nú-me-ro *pé-ta-lo *ár-bi-tro es-*drú-ju-la *brú-ju-la pi-*rá-mi-de o-*cé-a-no *sí-la-ba *pá-gi-na *úl-ti-mos *rá-pi-do *cá-li-do *lí-qui-do *só-li-do bo-*lí-gra-fo *án-gu-lo *cán-ta-ro *có-mi-co *má-gi-co *tró-pi-co *é-po-ca es-*tó-ma-go ma-te-*má-ti-cas gra-*má-ti-ca ve-*hí-cu-lo *có-mo-do *jó-ve-nes i-*má-ge-nes e-*xá-me-nes *ór-de-nes *cár-ce-les *lá-pi-ces *ár-bo-les`,
+H=`*dí-a *tí-o *rí-o pa-*ís ma-*íz ba-*úl re-*ír ca-*í-da po-li-*cí-a pa-na-de-*rí-a li-bre-*rí-a pas-te-le-*rí-a ca-fe-te-*rí-a he-la-de-*rí-a za-pa-te-*rí-a *mí-o *frí-o *tí-a son-re-*ír o-*í-do sa-*bí-a co-*mí-a vi-*ví-a a-le-*grí-a me-lo-*dí-a e-ner-*gí-a san-*dí-a`;
+const st0=s=>s.replace(/[áéíóú]/g,c=>'aeiou'['áéíóú'.indexOf(c)]),E=w=>/[aeiounsáéíóú]$/.test(w);
+function P(s,h){const sy=s.split('-'),t=sy.findIndex(x=>x[0]=='*');sy[t]=sy[t].slice(1);const w=sy.join(''),p=sy.length-1-t;return{w,sy,t,h,n:sy.length,k:p==0?'aguda':p==1?'llana':'esdrújula',tl:/[áéíóú]/.test(w),pl:st0(w)}}
+const need=x=>x.h||x.k=='esdrújula'||((x.k=='aguda')==E(x.w));
+// Control de calidad: se descarta cualquier palabra cuyo tilde no cumpla la regla
+const W=[...G.trim().split(/\s+/).map(s=>P(s,0)),...H.trim().split(/\s+/).map(s=>P(s,1))].filter(x=>{const ok=x.tl==need(x)&&(!x.tl||/[áéíóú]/.test(x.sy[x.t]));if(!ok)console.warn('descartada',x.w);return ok});
+const NM={1:'🕵️ Detective de sílabas',2:'🗂️ Clasifica las palabras',3:'❓ ¿Lleva tilde?',4:'✍️ Coloca la tilde',5:'🧺 El gran clasificador',6:'🔍 Detecta el error',7:'🏁 Reto final'};
+const CL={aguda:'#e8505b',llana:'#12a0a0',esdrújula:'#7a5af8'},PL={aguda:'AGUDAS',llana:'LLANAS',esdrújula:'ESDRÚJULAS'};
+const PM=['¡Genial! 🎉','¡Muy bien! 👏','¡Eso es! ⭐','¡Perfecto! 🚀','¡Bravo! 🕵️','¡Qué crack! 🔥'];
+const def=()=>({p:0,sk:0,bk:0,ok:0,tot:0,st:{},er:{},bd:[],h:[],rf:0,lv:1});
+let S=def();try{S=Object.assign(def(),JSON.parse(localStorage.getItem('dlt')))}catch(e){}
+const save=()=>{try{localStorage.setItem('dlt',JSON.stringify(S))}catch(e){}};
+const sm=m=>S.st[m]||{ok:0,tot:0};
+const BG=[['🌟','Primer acierto',s=>s.ok>=1],['🔥','Racha de 5',s=>s.bk>=5],['🚀','Racha de 10',s=>s.bk>=10],['💯','100 puntos',s=>s.p>=100],['🏆','500 puntos',s=>s.p>=500],['🕵️','Detective: 10 aciertos',s=>sm(1).ok>=10],['🗂️','Clasificador: 10 aciertos',s=>sm(2).ok+sm(5).ok>=10],['✍️','Maestro de la tilde: 10 en modos 3 y 4',s=>sm(3).ok+sm(4).ok>=10],['🧭','Explorador: prueba los 7 modos',s=>[1,2,3,4,5,6,7].every(m=>s.st[m])],['🎓','Reto final con 80 % o más',s=>s.rf]];
+const $=s=>document.querySelector(s),A=$('#app'),sh=a=>[...a].sort(()=>Math.random()-.5),pct=(a,b)=>b?Math.round(a/b*100):0;
+const show=h=>{A.innerHTML=h;$('#pp').textContent='⭐ '+S.p+'  🔥 '+S.sk;scrollTo(0,0)};
+const ch=(w,t)=>w.split('-').map((s,i)=>`<span class="sy${i==t?' t':''}">${s}</span>`).join('');
+const V=p=>{const r=[p];[...p].forEach((c,i)=>{if('aeiou'.includes(c))r.push(p.slice(0,i)+'áéíóú'['aeiou'.indexOf(c)]+p.slice(i+1))});return r};
+function toast(t){const d=document.createElement('div');d.className='tt';d.textContent=t;document.body.append(d);setTimeout(()=>d.remove(),3000)}
+function conf(){for(let i=0;i<36;i++){const d=document.createElement('span');d.className='cf';d.textContent='🎉⭐🎊✨'[i%4];d.style.left=Math.random()*100+'vw';d.style.animationDelay=Math.random()*.8+'s';document.body.append(d);setTimeout(()=>d.remove(),3800)}}
+function badges(){BG.forEach((b,i)=>{if(!S.bd.includes(i)&&b[2](S)){S.bd.push(i);toast('🏅 ¡Nueva medalla: '+b[1]+'!')}})}
+function home(){show(`<section class="hero"><h1>¡Domina la tilde!</h1><p>Encuentra la sílaba que suena más fuerte, clasifica palabras y gana medallas.</p><div>${ch('mur-cié-la-go',1)}</div></section>
+<p><b>Nivel:</b> ${[1,2,3].map(n=>`<button style="margin:4px;${S.lv==n?'':'background:#fff;color:#1b2a4a;border:3px solid #1b2a4a'}" onclick="S.lv=${n};save();home()">${'⭐'.repeat(n)} ${['Hasta 3 sílabas','Hasta 4 sílabas','Todas'][n-1]}</button>`).join('')}</p>
+<div class="grid"><button class="m" style="--c:#e8890c" onclick="learn()"><span>📖</span><b>Aprende las reglas</b><small>Empieza por aquí</small></button>
+${[1,2,3,4,5,6,7].map(m=>`<button class="m" style="--c:${['#e8505b','#12a0a0','#7a5af8','#e8890c','#2e9e5b','#d6336c','#1b2a4a'][m-1]}" onclick="start(${m})"><span>${NM[m].split(' ')[0]}</span><b>${NM[m].slice(3)}</b><small>${sm(m).tot?pct(sm(m).ok,sm(m).tot)+' % de aciertos':'¡Sin estrenar!'}</small></button>`).join('')}
+<button class="m" style="--c:#555" onclick="dash()"><span>📊</span><b>Mis resultados</b><small>Medallas y progreso</small></button></div>`)}
+function learn(){show(`<h2>📖 Aprende las reglas</h2><div class="grid">
+<div class="c"><h3>La sílaba tónica</h3><p>En cada palabra hay una sílaba que suena más fuerte: es la <b>tónica</b>. Las demás son <b>átonas</b>.</p>${ch('mur-cié-la-go',1)}</div>
+<div class="c"><h3>Cómo localizarla</h3><p>Di la palabra alargando cada sílaba (ca-mi-no… ca-<b>mi</b>-no…). Aquella en la que tu voz se «apoya» es la tónica. También puedes dar una palmada.</p>${ch('ca-mi-no',1)}</div>
+<div class="c" style="border-color:var(--ag)"><h3 style="color:var(--ag)">Agudas</h3><p>La tónica es la <b>última</b> sílaba. Llevan tilde si acaban en <b>vocal, -n o -s</b>.</p>${ch('ca-món',1)} ${ch('so-fá',1)}<p>Sin tilde: ${ch('re-loj',1)} ${ch('ciu-dad',1)}</p></div>
+<div class="c" style="border-color:var(--ll)"><h3 style="color:var(--ll)">Llanas</h3><p>La tónica es la <b>penúltima</b>. Llevan tilde si <b>NO</b> acaban en vocal, -n o -s.</p>${ch('ár-bol',0)} ${ch('lá-piz',0)}<p>Sin tilde: ${ch('ca-sa',0)} ${ch('jo-ven',0)}</p></div>
+<div class="c" style="border-color:var(--es)"><h3 style="color:var(--es)">Esdrújulas</h3><p>La tónica es la <b>antepenúltima</b>. ¡<b>Siempre</b> llevan tilde!</p>${ch('mú-si-ca',0)} ${ch('te-lé-fo-no',1)}</div>
+<div class="c"><h3>Hiatos</h3><p>Si la <b>i</b> o la <b>u</b> suenan fuertes junto a otra vocal, forman hiato y <b>siempre llevan tilde</b>.</p>${ch('dí-a',0)} ${ch('pa-ís',1)} ${ch('ba-úl',1)}<p>Con dos vocales fuertes (le-er, po-e-ta) se aplican las reglas normales.</p></div></div>
+<div class="c"><h3>Chuleta</h3><table><tr><th>Tipo<th>Tónica<th>¿Tilde?<tr><td>Aguda<td>Última<td>Si acaba en vocal, -n o -s<tr><td>Llana<td>Penúltima<td>Si NO acaba en vocal, -n o -s<tr><td>Esdrújula<td>Antepenúltima<td>Siempre</table></div><button onclick="home()">¡A jugar!</button>`)}
+let GM,U=new Set();
+const pool=()=>W.filter(x=>S.lv==1?x.n<=3:S.lv==2?x.n<=4:1);
+function pk(f=()=>1){let p=pool().filter(f);if(p.length<4)p=W.filter(f);let q=p.filter(x=>!U.has(x.w));if(!q.length){p.forEach(x=>U.delete(x.w));q=p}const x=q[Math.random()*q.length|0];U.add(x.w);return x}
+const Q={
+1(){const x=pk();return{x,h:`<p>¿Cuál es la sílaba tónica?</p><div class="w">${x.w.toUpperCase()}</div>`,o:sh(x.sy.map((s,i)=>({t:s.toUpperCase(),ok:i==x.t})))}},
+2(){const x=pk(y=>!y.h);return{x,h:`<p>¿Cómo es esta palabra?</p><div class="w">${x.w}</div>`,o:['aguda','llana','esdrújula'].map(k=>({t:k[0].toUpperCase()+k.slice(1),ok:k==x.k}))}},
+3(){const x=pk(),o=sh(V(x.pl).filter(v=>v!=x.w)).slice(0,2);return{x,h:`<p>¿Cómo se escribe bien?</p><div class="w">${x.pl}</div>`,o:sh([x.w,...o]).map(t=>({t,ok:t==x.w}))}},
+4(){const x=pk();return{x,inp:1,h:`<p>Escríbela con tilde si la necesita:</p><div class="w">${x.pl}</div>`}},
+6(){const x=pk(),bad=Math.random()<.5;let s=x.w;if(bad)s=sh(V(x.pl).filter(v=>v!=x.w))[0];const o=[{t:'✅ Está bien escrita',ok:s==x.w}];if(s==x.w)o.push({t:'❌ Tiene un error',ok:false});else{o.push({t:x.w,ok:true});const d=sh(V(x.pl).filter(v=>v!=x.w&&v!=s))[0];if(d)o.push({t:d,ok:false})}return{x,h:`<p>¿Está bien escrita? Si tiene error, elige cómo se escribe bien.</p><div class="w">${s}</div>`,o:[o[0],...sh(o.slice(1))]}}};
+function ex(x){const l=x.w.slice(-1),f=/[aeiou]/.test(l)?'vocal':'-'+l,e=E(x.w);let r=`Se lee ${x.sy.map((s,i)=>i==x.t?s.toUpperCase():s).join('-')}: es <b>${x.h?'un hiato':x.k}</b>. `;
+if(x.h)r+='En un hiato la i o la u suenan fuertes y siempre llevan tilde.';else if(x.k=='aguda')r+=`Acaba en ${f}: ${e?'las agudas acabadas en vocal, -n o -s llevan tilde':'las agudas que no acaban en vocal, -n ni -s no llevan tilde'}.`;else if(x.k=='llana')r+=`Acaba en ${f}: ${e?'las llanas acabadas en vocal, -n o -s no llevan tilde':'las llanas que no acaban en vocal, -n ni -s llevan tilde'}.`;else r+='Las esdrújulas siempre llevan tilde.';return r+` Forma correcta: <b>${x.w}</b>.`}
+function start(m){U.clear();GM={m,i:0,ok:0,pts:0,n:m==5?9:m==7?15:10};m==5?r5():next()}
+function next(){if(GM.i>=GM.n)return end();const mm=GM.m==7?[1,2,3,4,6][Math.random()*5|0]:GM.m;GM.q=Q[mm]();draw()}
+function draw(){const g=GM,q=g.q;show(`<div class="bar"><i style="width:${g.i/g.n*100}%"></i></div><p class="inf">${NM[g.m]} · pregunta ${g.i+1} de ${g.n}</p><div class="c">${q.h}${q.inp?`<div>${[...'áéíóú'].map(c=>`<button class="k" onclick="ins('${c}')">${c}</button>`).join('')}</div><input id="t" autocomplete="off" autocapitalize="off" spellcheck="false"><button onclick="chk()">Comprobar</button>`:`<div class="o">${q.o.map((o,i)=>`<button onclick="go(${i},this)">${o.t}</button>`).join('')}</div>`}</div><div id="fb"></div>`);const t=$('#t');if(t){t.focus();t.onkeydown=e=>e.key=='Enter'&&chk()}}
+function ins(c){const t=$('#t'),a=t.selectionStart;t.value=t.value.slice(0,a)+c+t.value.slice(t.selectionEnd);t.focus();t.setSelectionRange(a+1,a+1)}
+function go(i,b){const q=GM.q;if(q.done)return;q.done=1;const bs=[...b.parentNode.children];bs.forEach((x,j)=>{x.disabled=1;if(q.o[j].ok)x.classList.add('ok')});if(!q.o[i].ok)b.classList.add('bad');res(q.o[i].ok)}
+function chk(){const q=GM.q,t=$('#t'),v=t.value.trim().normalize('NFC').toLowerCase();if(!v||q.done)return;q.done=1;t.disabled=1;res(v==q.x.w.toLowerCase())}
+function rec(ok,x){const s=S.st[GM.m]=sm(GM.m);s.tot++;S.tot++;if(ok){s.ok++;S.ok++;S.sk++;S.bk=Math.max(S.bk,S.sk);const p=10+Math.min(S.sk,5)*2;S.p+=p;GM.pts+=p;GM.ok++;return PM[Math.random()*6|0]+` +${p} puntos`+(S.sk>2?` · 🔥 racha de ${S.sk}`:'')}S.sk=0;const t=x.h?'hiato':x.k;S.er[t]=(S.er[t]||0)+1;return'💪 ¡Casi! Fíjate en la regla:'}
+function res(ok){const g=GM,m=rec(ok,g.q.x);g.i++;badges();save();$('#pp').textContent='⭐ '+S.p+'  🔥 '+S.sk;$('#fb').innerHTML=`<div class="fb ${ok?'g':'b'}"><b>${m}</b><p>${ex(g.q.x)}</p><button onclick="next()">${g.i>=g.n?'Ver resultado':'Siguiente'}</button></div>`}
+let B5;
+function r5(){B5={w:sh(['aguda','llana','esdrújula'].flatMap(k=>[0,1,2].map(()=>pk(y=>!y.h&&y.k==k)))),z:{},sel:null,done:0};d5()}
+function d5(){const b=B5,chip=(x,i)=>`<span class="chip ${b.sel==i?'sel':''} ${b.done?(b.z[i]==x.k?'ok':'bad'):''}" draggable="${!b.done}" ondragstart="event.dataTransfer.setData('t','${i}')" onclick="event.stopPropagation();c5(${i})">${x.w}</span>`,all=b.w.every((x,i)=>b.z[i]);
+show(`<h2>${NM[5]}</h2><p>Arrastra cada palabra a su columna, o toca la palabra y luego la columna.</p><div class="c" ondragover="event.preventDefault()" ondrop="d5drop(event,null)" style="min-height:80px">${b.w.map((x,i)=>b.z[i]?'':chip(x,i)).join('')||'¡Todas colocadas!'}</div><div class="grid">${['aguda','llana','esdrújula'].map(k=>`<div class="z" style="--c:${CL[k]}" ondragover="event.preventDefault()" ondrop="d5drop(event,'${k}')" onclick="z5('${k}')"><b style="color:${CL[k]}">${PL[k]}</b><br>${b.w.map((x,i)=>b.z[i]==k?chip(x,i):'').join('')}</div>`).join('')}</div>`+(b.done?`<div class="fb ${GM.ok>6?'g':'b'}"><b>${GM.ok} de 9 correctas</b>${b.w.map((x,i)=>b.z[i]==x.k?'':`<p>${ex(x)}</p>`).join('')}<button onclick="end()">Ver resultado</button></div>`:all?'<button onclick="ck5()">Comprobar</button>':''))}
+function c5(i){if(B5.done)return;if(B5.z[i])B5.z[i]=null;else B5.sel=B5.sel==i?null:i;d5()}
+function z5(k){if(B5.done||B5.sel==null)return;B5.z[B5.sel]=k;B5.sel=null;d5()}
+function d5drop(e,k){e.preventDefault();if(B5.done)return;B5.z[+e.dataTransfer.getData('t')]=k;B5.sel=null;d5()}
+function ck5(){B5.w.forEach((x,i)=>rec(B5.z[i]==x.k,x));B5.done=1;GM.i=9;badges();save();d5()}
+function end(){const g=GM,p=pct(g.ok,g.n);S.h.push({m:g.m,p});S.h=S.h.slice(-12);if(g.m==7&&p>=80)S.rf=1;badges();save();if(p>=70)conf();
+show(`<div class="c" style="text-align:center"><h2>${NM[g.m]}</h2><div class="w">${'★'.repeat(p>=90?3:p>=70?2:1)}</div><p><b>${g.ok} de ${g.n} aciertos (${p} %)</b> · +${g.pts} puntos</p><p>${p>=90?'¡Increíble, eres un maestro de la tilde!':p>=70?'¡Muy buen trabajo!':p>=40?'¡Vas por buen camino! Repasa las reglas y vuelve a intentarlo.':'¡Sigue practicando! Cada intento te hace mejor.'}</p><button onclick="start(${g.m})">Jugar otra vez</button> <button onclick="learn()">Repasar reglas</button> <button onclick="home()">Menú</button></div>`)}
+function dash(){const er=Object.entries(S.er).sort((a,b)=>b[1]-a[1]),mx=er[0]?er[0][1]:1,EN={aguda:'Palabras agudas',llana:'Palabras llanas',esdrújula:'Palabras esdrújulas',hiato:'Hiatos'};
+show(`<h2>📊 Mis resultados</h2><div class="grid"><div class="c"><b>Actividades</b><div class="w">${S.h.length?S.tot:0}</div>preguntas respondidas: ${S.tot}</div><div class="c"><b>Aciertos</b><div class="w">${pct(S.ok,S.tot)} %</div></div><div class="c"><b>Puntos</b><div class="w">${S.p}</div>Mejor racha: ${S.bk}</div></div>
+<div class="c"><h3>Por actividad</h3>${[1,2,3,4,5,6,7].map(m=>`<div class="row"><span style="width:230px">${NM[m]}</span><i style="width:${pct(sm(m).ok,sm(m).tot)*.5}%"></i> ${sm(m).tot?pct(sm(m).ok,sm(m).tot)+' %':'—'}</div>`).join('')}</div>
+<div class="c"><h3>Errores más frecuentes</h3>${er.length?er.map(([k,v])=>`<div class="row"><span style="width:180px">${EN[k]}</span><i style="width:${v/mx*50}%"></i> ${v}</div>`).join(''):'¡Aún no hay errores!'}</div>
+<div class="c"><h3>Evolución (últimas partidas)</h3>${S.h.length?`<div class="ev">${S.h.map(h=>`<i style="height:${Math.max(h.p,3)}%" title="${h.p} %"></i>`).join('')}</div>`:'Juega una partida para ver tu evolución.'}</div>
+<div class="c"><h3>Medallas (${S.bd.length}/${BG.length})</h3>${BG.map((b,i)=>`<div class="bd ${S.bd.includes(i)?'':'l'}"><span>${b[0]}</span>${b[1]}</div>`).join('')}</div>
+<button onclick="if(confirm('¿Seguro que quieres borrar todo el progreso?')){S=def();save();dash()}" style="background:#b3261e">Reiniciar progreso</button>`)}
+home();
+</script></body></html>
